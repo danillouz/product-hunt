@@ -66,7 +66,7 @@ products from Product Hunt.
 None.
 
 #### Returns
-Request Object which can be executed with the `.exec()`
+`productHunt` Object which can be executed with the `.exec()`
 method.
 
 ### .newest()
@@ -81,7 +81,7 @@ from Product Hunt.
 None.
 
 #### Returns
-Request Object which can be executed with the `.exec()`
+`productHunt` Object which can be executed with the `.exec()`
 method.
 
 ### .today()
@@ -96,7 +96,7 @@ Product Hunt.
 None.
 
 #### Returns
-Request Object which can be executed with the `.exec()`
+`productHunt` Object which can be executed with the `.exec()`
 method.
 
 ### .yesterday()
@@ -111,7 +111,7 @@ from Product Hunt.
 None.
 
 #### Returns
-Request Object which can be executed with the `.exec()`
+`productHunt` Object which can be executed with the `.exec()`
 method.
 
 ### .daysAgo(n)
@@ -130,11 +130,15 @@ products from `n` days ago.
 | n  | Number  | yes | The number of days in the past. _Must be `0` or greater._
 
 #### Returns
-Request Object which can be executed with the `.exec()`
+`productHunt` Object which can be executed with the `.exec()`
 method.
 
 ### .exec()
 Executes the built request.
+
+After executing the `productHunt` Object, the built request
+Object will be reset, meaning it will default to _popular_
+and _today_.
 
 #### Arguments
 None.
