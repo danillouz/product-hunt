@@ -10,7 +10,7 @@
 [coverage-image]: https://coveralls.io/repos/danillouz/product-hunt/badge.svg?branch=master&service=github
 [coverage-url]: https://coveralls.io/github/danillouz/product-hunt?branch=master
 
-Unofficial wrapper of the public Product Hunt API.
+Unofficial wrapper of the **public** Product Hunt API.
 
 ![Product Hunt](https://raw.githubusercontent.com/danillouz/product-hunt/master/img/ph-kitty.png "Product Hunt")
 
@@ -19,8 +19,8 @@ Unofficial wrapper of the public Product Hunt API.
 
 ## Interface
 The module exposes a couple of methods to build a request
-Object which can be executed in order to retrieve products
-from Product Hunt.
+Object which can be executed in order to retrieve products,
+i.e. posts, from Product Hunt.
 
 This is done by using **one** of the _category_ specific
 request builder methods.
@@ -54,7 +54,16 @@ productHunt
 After requiring the module, the following methods can be
 used:
 
-### .popular()
+| Method | Arguments | Returns | Description |
+| --- | --- | --- | --- |
+| popular | no | `Object` | retrieves the most popular products |
+| newest | no | `Object` | retrieves the newest products |
+| today | no | `Object` | retrieves todays products |
+| yesterday | no | `Object` | retrieves yesterdays products |
+| daysAgo | yes | `Object` | retrieves products from `n` days ago |
+| exec | no | `Promise` | executes a built request |
+
+## .popular()
 Request builder method used to retrieve the most popular
 products from Product Hunt.
 
@@ -69,7 +78,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-### .newest()
+## .newest()
 Request builder method used to retrieve the newest products
 from Product Hunt.
 
@@ -84,7 +93,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-### .today()
+## .today()
 Request builder method used to retrieve todays products from
 Product Hunt.
 
@@ -99,7 +108,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-### .yesterday()
+## .yesterday()
 Request builder method used to retrieve yesterdays products
 from Product Hunt.
 
@@ -114,7 +123,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-### .daysAgo(n)
+## .daysAgo(n)
 Request builder method used to retrieve Product Hunt
 products from `n` days ago.
 
@@ -133,97 +142,97 @@ products from `n` days ago.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-### .exec()
+## .exec()
 Executes the built request.
 
 After executing the `productHunt` Object, the built request
 Object will be reset, meaning it will default to _popular_
-and _today_.
+and _today_ again.
 
 #### Arguments
 None.
 
 #### Returns
-`Promise` Object with resolves with an products Array, where
-each element is an [product Object](#product-object-representation).
+`Promise` that resolves with a products Array, where each
+element is a [product Object](#product-object-post-representation).
 
-## Product Object Representation
+## Product Object (Post) Representation
 ```json
 {
-	"id": 62330,
-	"category_id": 1,
-	"slug": "li-st",
-	"user_id": 187835,
-	"name": "li.st",
-	"comment_count": 5,
-	"tagline": "Create lists about anything, by B.J. Novak & Devin Flaherty",
-	"topics": [
-		{
-			"id": 2,
-			"name": "Android",
-			"slug": "android",
-			"trending": false
-		},
-		{
-			"id": 8,
-			"name": "iPhone",
-			"slug": "iphone",
-			"trending": false
-		}
-	],
-	"created_at": "2016-05-11T11:10:05.558-07:00",
-	"featured_at": "2016-05-12T00:01:00.000-07:00",
-	"url": "/tech/li-st",
-	"shortened_url": "/r/611d59ec8d02e8/62330",
-	"vote_count": 51,
-	"product_state": "default",
-	"category": {
-		"has_upcoming": true,
-		"id": 1,
-		"slug": "tech",
-		"name": "Tech",
-		"item_name": "product",
-		"color": "#5898f1"
+  "id": 62330,
+  "category_id": 1,
+  "slug": "li-st",
+  "user_id": 187835,
+  "name": "li.st",
+  "comment_count": 5,
+  "tagline": "Create lists about anything, by B.J. Novak & Devin Flaherty",
+  "topics": [
+    {
+      "id": 2,
+	  "name": "Android",
+	  "slug": "android",
+	  "trending": false
 	},
-	"exclusive": null,
-	"user": {
-		"id": 187835,
-		"username": "bjnovak",
-		"name": "B.J. Novak",
-		"headline": "",
-		"image_urls": {
-			"60": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=60&h=60",
-			"160": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160"
-		},
-		"link": "/@bjnovak",
-		"avatar_url": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160",
-		"is_maker": true
-	},
-	"thumbnail": {
-		"id": 163210,
-		"kindle_asin": null,
-		"media_type": "image",
-		"platform": null,
-		"video_id": null,
-		"url": null,
-		"image_url": "https://ph-files.imgix.net/c02512f1-525b-42a8-8737-10cee482368f?auto=format&fit=max&h=570&w=430"
-	},
-	"shortened_link": "611d59ec8d02e8",
-	"author": {
-		"id": 187835,
-		"username": "bjnovak",
-		"name": "B.J. Novak",
-		"headline": "",
-		"image_urls": {
-			"60": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=60&h=60",
-			"160": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160"
-		},
-		"link": "/@bjnovak",
-		"avatar_url": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160",
-		"is_maker": true
-	},
-	"category_slug": "tech",
-	"is_featured": true
+	{
+      "id": 8,
+	  "name": "iPhone",
+	  "slug": "iphone",
+	  "trending": false
+	}
+  ],
+  "created_at": "2016-05-11T11:10:05.558-07:00",
+  "featured_at": "2016-05-12T00:01:00.000-07:00",
+  "url": "/tech/li-st",
+  "shortened_url": "/r/611d59ec8d02e8/62330",
+  "vote_count": 51,
+  "product_state": "default",
+  "category": {
+    "has_upcoming": true,
+    "id": 1,
+    "slug": "tech",
+    "name": "Tech",
+    "item_name": "product",
+    "color": "#5898f1"
+  },
+  "exclusive": null,
+  "user": {
+    "id": 187835,
+    "username": "bjnovak",
+    "name": "B.J. Novak",
+    "headline": "",
+    "image_urls": {
+      "60": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=60&h=60",
+      "160": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160"
+    },
+    "link": "/@bjnovak",
+    "avatar_url": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160",
+    "is_maker": true
+  },
+  "thumbnail": {
+    "id": 163210,
+    "kindle_asin": null,
+    "media_type": "image",
+    "platform": null,
+    "video_id": null,
+    "url": null,
+    "image_url": "https://ph-files.imgix.net/c02512f1-525b-42a8-8737-10cee482368f?auto=format&fit=max&h=570&w=430"
+  },
+  "shortened_link": "611d59ec8d02e8",
+  "author": {
+    "id": 187835,
+    "username": "bjnovak",
+    "name": "B.J. Novak",
+    "headline": "",
+    "image_urls": {
+      "60": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=60&h=60",
+      "160": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160"
+    },
+    "link": "/@bjnovak",
+    "avatar_url": "https://ph-avatars.imgix.net/187835/original?auto=format&fit=crop&crop=faces&w=160&h=160",
+    "is_maker": true
+  },
+  "category_slug": "tech",
+  "is_featured": true
 }
 ```
 
@@ -236,18 +245,18 @@ Fetch yesterdays newest products:
 var productHunt = require('product-hunt');
 
 var request = productHunt
-	.newest()
-	.yesterday();
+  .newest()
+  .yesterday();
 
 var getProductsPromise = request.exec();
 
 getProductsPromise
-	.then(function productsFetcher(products) {
-		console.log('products: ', products);
-	})
-	.catch(function errorHandler(err) {
-		console.log('err: ', err.message);
-	});
+  .then(function productsFetcher(products) {
+    console.log('products: ', products);
+  })
+  .catch(function errorHandler(err) {
+    console.log('err: ', err.message);
+  });
 ```
 
 ## Example 2
@@ -259,11 +268,11 @@ Fetch the most popular products of 3 days ago:
 import productHunt from 'product-hunt';
 
 productHunt
-	.popular()
-	.daysAgo(3)
-	.exec()
-	.then(console.log.bind(console))
-	.catch(console.error.bind(console))
+  .popular()
+  .daysAgo(3)
+  .exec()
+  .then(console.log.bind(console))
+  .catch(console.error.bind(console));
 ```
 
 ## Example 3
@@ -275,17 +284,21 @@ Fetch todays most popular products by using default behavior:
 import productHunt from 'product-hunt';
 
 async function todayPopularProducts() {
-	try {
-		const products = await productHunt.exec();
+  try {
+    const products = await productHunt.exec();
 
-		console.log(`products: ${products}`);
-	} catch (err) {
-		console.error(`err: ${err}`);
-	}
+    console.log(`products: ${products}`);
+  } catch (err) {
+    console.error(`err: ${err}`);
+  }
 }
 
 todayPopularProducts();
 ```
+
+When **no** other methods besides the `exec()` method are
+provided. The default behavior is to retrieve the most
+_popular_ products of _today_.
 
 ## Example 4
 Using multiple methods of the same category:
@@ -296,26 +309,25 @@ Using multiple methods of the same category:
 import productHunt from 'product-hunt';
 
 async function todayPopularProducts() {
-	try {
-		const products = await productHunt
-			.newest()
-			.yesterday()
-			.daysAgo(4)
-			.today() // last used `timeframe` method
-			.popular() // last used `type` method
-			.exec();
+  try {
+    const products = await productHunt
+      .newest()
+      .yesterday()
+      .daysAgo(4)
+      .today() // last used `timeframe` method
+      .popular() // last used `type` method
+      .exec();
 
-		console.log(`products: ${products}`);
-	} catch (err) {
-		console.error(`err: ${err}`);
-	}
+      console.log(`products: ${products}`);
+  } catch (err) {
+    console.error(`err: ${err}`);
+  }
 }
 
 todayPopularProducts();
 ```
 
 When using multiple methods of the same category, the last
-invoked method is used to build the request Object.
-
-Therefore this example will result in fetching todays most
-popular products.
+invoked method is used to build the request Object. Therefore
+this example will result in fetching todays most popular
+products.
