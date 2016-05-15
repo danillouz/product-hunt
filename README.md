@@ -3,14 +3,14 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
 
-[npm-image]: https://img.shields.io/badge/npm-v0.0.1-blue.svg
+[npm-image]: https://img.shields.io/badge/npm-v0.2.0-blue.svg
 [npm-url]: https://www.npmjs.com/package/product-hunt
 [travis-image]: https://travis-ci.org/danillouz/product-hunt.svg?branch=master
 [travis-url]: https://travis-ci.org/danillouz/product-hunt
 [coverage-image]: https://coveralls.io/repos/danillouz/product-hunt/badge.svg?branch=master&service=github
 [coverage-url]: https://coveralls.io/github/danillouz/product-hunt?branch=master
 
-Unofficial wrapper of the **public** Product Hunt API.
+Unofficial wrapper of the **public** [Product Hunt](https://www.producthunt.com/) API.
 
 ![Product Hunt](https://raw.githubusercontent.com/danillouz/product-hunt/master/img/ph-kitty.png "Product Hunt")
 
@@ -43,11 +43,11 @@ invoked method is used to build the request Object._
 ## Syntax
 ```javascript
 productHunt
-	.popular()
-	.today()
-	.exec()
-	.then()
-	.catch();
+  .popular()
+  .today()
+  .exec()
+  .then()
+  .catch();
 ```
 
 ## Methods
@@ -56,14 +56,14 @@ used:
 
 | Method | Arguments | Returns | Description |
 | --- | --- | --- | --- |
-| popular | no | `Object` | retrieves the most popular products |
-| newest | no | `Object` | retrieves the newest products |
-| today | no | `Object` | retrieves todays products |
-| yesterday | no | `Object` | retrieves yesterdays products |
-| daysAgo | yes | `Object` | retrieves products from `n` days ago |
-| exec | no | `Promise` | executes a built request |
+| [popular](#popular) | no | `Object` | retrieve the most popular products |
+| [newest](#newest) | no | `Object` | retrieve the newest products |
+| [today](#today) | no | `Object` | retrieve todays products |
+| [yesterday](#yesterday) | no | `Object` | retrieve yesterdays products |
+| [daysAgo](#daysAgo) | yes | `Object` | retrieve products from `n` days ago |
+| [exec](#exec) | no | `Promise` | execute a built request |
 
-## .popular()
+### .popular()
 Request builder method used to retrieve the most popular
 products from Product Hunt.
 
@@ -78,7 +78,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-## .newest()
+### .newest()
 Request builder method used to retrieve the newest products
 from Product Hunt.
 
@@ -93,7 +93,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-## .today()
+### .today()
 Request builder method used to retrieve todays products from
 Product Hunt.
 
@@ -108,7 +108,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-## .yesterday()
+### .yesterday()
 Request builder method used to retrieve yesterdays products
 from Product Hunt.
 
@@ -123,7 +123,7 @@ None.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-## .daysAgo(n)
+### .daysAgo(n)
 Request builder method used to retrieve Product Hunt
 products from `n` days ago.
 
@@ -142,7 +142,7 @@ products from `n` days ago.
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
-## .exec()
+### .exec()
 Executes the built request.
 
 After executing the `productHunt` Object, the built request

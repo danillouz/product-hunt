@@ -30,7 +30,7 @@ function GET(uri, params) {
 			if (status !== 200) {
 				const err = new Error(`Request failed: ${statusText}`);
 
-				err.status = stats;
+				err.status = status;
 
 				throw err;
 			}

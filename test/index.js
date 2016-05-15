@@ -7,3 +7,4 @@ require('./unit/yesterday');
 require('./unit/days-ago');
 
 require('./functional/default');
+require('./functional/http');
