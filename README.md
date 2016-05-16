@@ -3,7 +3,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
 
-[npm-image]: https://img.shields.io/badge/npm-v0.2.0-blue.svg
+[npm-image]: https://img.shields.io/badge/npm-v0.2.1-blue.svg
 [npm-url]: https://www.npmjs.com/package/product-hunt
 [travis-image]: https://travis-ci.org/danillouz/product-hunt.svg?branch=master
 [travis-url]: https://travis-ci.org/danillouz/product-hunt
@@ -27,11 +27,11 @@ request builder methods.
 
 | Request Builder Method | Category | Default |
 | --- | --- | --- |
-| popular  | type  | yes |
-| newest  | type  | no |
-| today  | timeframe  | yes |
-| yesterday  | timeframe  | no |
-| daysAgo  | timeframe  | no |
+| [popular](#popular) | type | yes |
+| [newest](#newest) | type | no |
+| [today](#today) | timeframe | yes |
+| [yesterday](#yesterday) | timeframe | no |
+| [daysAgo](#daysAgon)  | timeframe | no |
 
 After building the request Object, it can be executed by
 using the `.exec()` method. This returns a `Promise` which
@@ -60,7 +60,7 @@ used:
 | [newest](#newest) | no | `Object` | retrieve the newest products |
 | [today](#today) | no | `Object` | retrieve todays products |
 | [yesterday](#yesterday) | no | `Object` | retrieve yesterdays products |
-| [daysAgo](#daysAgo) | yes | `Object` | retrieve products from `n` days ago |
+| [daysAgo](#daysAgon) | yes | `Object` | retrieve products from `n` days ago |
 | [exec](#exec) | no | `Promise` | execute a built request |
 
 ### .popular()
@@ -71,10 +71,10 @@ products from Product Hunt.
 | --- | --- | --- |
 | yes  | type  | yes |
 
-#### Arguments
+###### Arguments
 None.
 
-#### Returns
+###### Returns
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
@@ -86,10 +86,10 @@ from Product Hunt.
 | --- | --- | --- |
 | yes  | type  | no |
 
-#### Arguments
+###### Arguments
 None.
 
-#### Returns
+###### Returns
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
@@ -101,10 +101,10 @@ Product Hunt.
 | --- | --- | --- |
 | yes  | timeframe  | yes |
 
-#### Arguments
+###### Arguments
 None.
 
-#### Returns
+###### Returns
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
@@ -116,10 +116,10 @@ from Product Hunt.
 | --- | --- | --- |
 | yes  | timeframe  | no |
 
-#### Arguments
+###### Arguments
 None.
 
-#### Returns
+###### Returns
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
@@ -133,12 +133,12 @@ products from `n` days ago.
 | --- | --- | --- |
 | yes  | timeframe  | no |
 
-#### Arguments
+###### Arguments
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
 | n  | Number  | yes | The number of days in the past. _Must be `0` or greater._
 
-#### Returns
+###### Returns
 `productHunt` Object which can be executed with the `.exec()`
 method.
 
@@ -149,10 +149,10 @@ After executing the `productHunt` Object, the built request
 Object will be reset, meaning it will default to _popular_
 and _today_ again.
 
-#### Arguments
+###### Arguments
 None.
 
-#### Returns
+###### Returns
 `Promise` that resolves with a products Array, where each
 element is a [product Object](#product-object-post-representation).
 
