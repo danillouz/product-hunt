@@ -8,18 +8,16 @@ const http = require('../../src/utils/http');
 const expect = chai.expect;
 
 describe('Default values', function () {
-	before(function () {
+	before(function *() {
 		this.httpStub = sinon.stub(http, 'GET', function () {
 			return Promise.resolve();
 		});
 
-		return productHunt
-			.exec()
-			.then(() => {
-				const [ args ] = this.httpStub.args;
+		yield productHunt.exec();
 
-				this.params = args[1];
-			});
+		const [ args ] = this.httpStub.args;
+
+		this.params = args[1];
 	});
 
 	it('sets `filter` query parameter to `popular`', function () {

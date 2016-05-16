@@ -8,40 +8,34 @@ const http = require('../../src/utils/http');
 const expect = chai.expect;
 
 describe('.daysAgo(n)', function () {
-	it('sets `page` query parameter to `n`', function () {
+	it('sets `page` query parameter to `n`', function *() {
 		const n = 20;
 		const httpStub = sinon.stub(http, 'GET', function () {
 			return Promise.resolve();
 		});
 
-		return productHunt
-			.daysAgo(n)
-			.exec()
-			.then(() => {
-				const [ args ] = httpStub.args;
-				const params = args[1];
+		yield productHunt.daysAgo(n).exec();
 
-				expect(params.page).to.equal(n);
+		const [ args ] = httpStub.args;
+		const params = args[1];
 
-				httpStub.restore();
-			});
+		expect(params.page).to.equal(n);
+
+		httpStub.restore();
 	});
 
-	it('defaults to `0` for invalid `n`', function () {
+	it('defaults to `0` for invalid `n`', function *() {
 		const httpStub = sinon.stub(http, 'GET', function () {
 			return Promise.resolve();
 		});
 
-		return productHunt
-			.daysAgo(true)
-			.exec()
-			.then(() => {
-				const [ args ] = httpStub.args;
-				const params = args[1];
+		yield productHunt.daysAgo(true).exec();
 
-				expect(params.page).to.equal(0);
+		const [ args ] = httpStub.args;
+		const params = args[1];
 
-				httpStub.restore();
-			});
+		expect(params.page).to.equal(0);
+
+		httpStub.restore();
 	});
 });

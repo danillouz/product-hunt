@@ -8,26 +8,18 @@ const http = require('../../src/utils/http');
 const expect = chai.expect;
 
 describe('.popular()', function () {
-	before(function () {
-		this.httpStub = sinon.stub(http, 'GET', function () {
+	it('sets `filter` query parameter to `popular`', function *() {
+		const httpStub = sinon.stub(http, 'GET', function () {
 			return Promise.resolve();
 		});
 
-		return productHunt
-			.popular()
-			.exec()
-			.then(() => {
-				const [ args ] = this.httpStub.args;
+		yield productHunt.popular().exec();
 
-				this.params = args[1];
-			});
-	});
+		const [ args ] = httpStub.args;
+		const params = args[1];
 
-	it('sets `filter` query parameter to `popular`', function () {
-		expect(this.params.filter).to.equal('popular');
-	});
+		expect(params.filter).to.equal('popular');
 
-	after(function () {
-		this.httpStub.restore();
+		httpStub.restore();
 	});
 });

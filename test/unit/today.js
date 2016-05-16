@@ -8,26 +8,18 @@ const http = require('../../src/utils/http');
 const expect = chai.expect;
 
 describe('.today()', function () {
-	before(function () {
-		this.httpStub = sinon.stub(http, 'GET', function () {
+	it('sets `page` query parameter to `0`', function *() {
+		const httpStub = sinon.stub(http, 'GET', function () {
 			return Promise.resolve();
 		});
 
-		return productHunt
-			.today()
-			.exec()
-			.then(() => {
-				const [ args ] = this.httpStub.args;
+		yield productHunt.today().exec();
 
-				this.params = args[1];
-			});
-	});
+		const [ args ] = httpStub.args;
+		const params = args[1];
 
-	it('sets `page` query parameter to `0`', function () {
-		expect(this.params.page).to.equal(0);
-	});
+		expect(params.page).to.equal(0);
 
-	after(function () {
-		this.httpStub.restore();
+		httpStub.restore();
 	});
 });

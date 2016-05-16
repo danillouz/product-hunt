@@ -9,22 +9,20 @@ const expect = chai.expect;
 const domain = 'https://posts.producthunt.com';
 
 describe('http', function () {
-	it('200 status returns products Array', function () {
+	it('200 status returns products Array', function *() {
 		nock(domain)
 			.get('/posts/currentUser')
 			.query(true)
 			.reply(200, fixture);
 
-		return productHunt
-			.exec()
-			.then(res => {
-				expect(res).to.deep.equal(fixture.posts);
+		const res = yield productHunt.exec();
 
-				nock.cleanAll();
-			});
+		expect(res).to.deep.equal(fixture.posts);
+
+		nock.cleanAll();
 	});
 
-	it('non 200 status returns error Object', function () {
+	it('non 200 status returns error Object', function *() {
 		const status = 404;
 
 		nock(domain)
@@ -32,14 +30,14 @@ describe('http', function () {
 			.query(true)
 			.reply(status);
 
-		return productHunt
-			.exec()
-			.catch(err => {
-				expect(err).to.exist;
-				expect(err.message).to.equal('Request failed: Not Found');
-				expect(err.status).to.equal(status);
+		try {
+			yield productHunt.exec();
+		} catch (err) {
+			expect(err).to.exist;
+			expect(err.message).to.equal('Request failed: Not Found');
+			expect(err.status).to.equal(status);
+		}
 
-				nock.cleanAll();
-			});
+		nock.cleanAll();
 	});
 });

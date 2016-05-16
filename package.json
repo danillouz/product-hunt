@@ -1,6 +1,6 @@
 {
   "name": "product-hunt",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Unofficial wrapper of the public product hunt API.",
   "main": "src/index.js",
   "engines": {
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/danillouz/product-hunt#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "co-mocha": "^1.1.2",
     "coveralls": "^2.11.9",
     "eslint": "^2.9.0",
     "istanbul": "^0.4.3",
