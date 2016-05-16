@@ -3,7 +3,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
 
-[npm-image]: https://img.shields.io/badge/npm-v0.2.1-blue.svg
+[npm-image]: https://img.shields.io/badge/npm-v0.3.0-blue.svg
 [npm-url]: https://www.npmjs.com/package/product-hunt
 [travis-image]: https://travis-ci.org/danillouz/product-hunt.svg?branch=master
 [travis-url]: https://travis-ci.org/danillouz/product-hunt
@@ -31,7 +31,7 @@ request builder methods.
 | [newest](#newest) | type | no |
 | [today](#today) | timeframe | yes |
 | [yesterday](#yesterday) | timeframe | no |
-| [daysAgo](#daysAgon)  | timeframe | no |
+| [daysAgo](#daysagon)  | timeframe | no |
 
 After building the request Object, it can be executed by
 using the `.exec()` method. This returns a `Promise` which
@@ -60,7 +60,7 @@ used:
 | [newest](#newest) | no | `Object` | retrieve the newest products |
 | [today](#today) | no | `Object` | retrieve todays products |
 | [yesterday](#yesterday) | no | `Object` | retrieve yesterdays products |
-| [daysAgo](#daysAgon) | yes | `Object` | retrieve products from `n` days ago |
+| [daysAgo](#daysagon) | yes | `Object` | retrieve products from `n` days ago |
 | [exec](#exec) | no | `Promise` | execute a built request |
 
 ### .popular()
@@ -242,13 +242,13 @@ Fetch yesterdays newest products:
 ```javascript
 'use strict';
 
-var productHunt = require('product-hunt');
+const productHunt = require('product-hunt');
 
-var request = productHunt
+const request = productHunt
   .newest()
   .yesterday();
 
-var getProductsPromise = request.exec();
+const getProductsPromise = request.exec();
 
 getProductsPromise
   .then(function productsFetcher(products) {
@@ -265,7 +265,7 @@ Fetch the most popular products of 3 days ago:
 ```javascript
 'use strict';
 
-import productHunt from 'product-hunt';
+const productHunt = require('product-hunt');
 
 productHunt
   .popular()
@@ -281,16 +281,15 @@ Fetch todays most popular products by using default behavior:
 ```javascript
 'use strict';
 
-import productHunt from 'product-hunt';
+const productHunt = require('product-hunt');
+const co = require('co');
 
-async function todayPopularProducts() {
-  try {
-    const products = await productHunt.exec();
+function todayPopularProducts() {
+  return co(function *fetchProducts() {	  
+    const products = yield productHunt.exec();
 
     console.log(`products: ${products}`);
-  } catch (err) {
-    console.error(`err: ${err}`);
-  }
+  });
 }
 
 todayPopularProducts();
@@ -306,22 +305,21 @@ Using multiple methods of the same category:
 ```javascript
 'use strict';
 
-import productHunt from 'product-hunt';
+const productHunt = require('product-hunt');
+const co = require('co');
 
-async function todayPopularProducts() {
-  try {
-    const products = await productHunt
-      .newest()
-      .yesterday()
-      .daysAgo(4)
-      .today() // last used `timeframe` method
-      .popular() // last used `type` method
-      .exec();
+function todayPopularProducts() {
+  return co(function *fetchProducts() {	  
+    const products = yield productHunt
+	  .newest()
+	  .yesterday()
+	  .daysAgo(4)
+	  .today() // last used `timeframe` method
+	  .popular() // last used `type` method
+	  .exec();
 
-      console.log(`products: ${products}`);
-  } catch (err) {
-    console.error(`err: ${err}`);
-  }
+    console.log(`products: ${products}`);
+  });
 }
 
 todayPopularProducts();
